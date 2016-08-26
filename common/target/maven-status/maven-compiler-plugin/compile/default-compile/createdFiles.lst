@@ -1,0 +1,10 @@
+com\koala\utils\common\mybatis\SimpleIgnoreColumnsPlugin.class
+com\koala\utils\common\mybatis\IgnoreColumnsPlugin.class
+com\koala\utils\common\lang\SpringContextHolder.class
+com\koala\utils\common\mybatis\PageRequest.class
+com\koala\utils\common\lang\Encodes.class
+com\koala\utils\common\lang\StringUtils.class
+com\koala\utils\common\lang\JsonMapper.class
+com\koala\utils\common\lang\DateUtils.class
+com\koala\utils\common\lang\Collections3.class
+com\koala\utils\common\mybatis\LogicGeneratorPlugin.class

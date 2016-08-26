@@ -1,0 +1,15 @@
+com\koala\utils\config\Queue.class
+com\koala\utils\config\MyBatisConfiguration.class
+com\koala\utils\config\CacheConfiguration$RedisCacheConfiguration.class
+com\koala\utils\config\annotation\EnableJMS.class
+com\koala\utils\config\annotation\EnableRedisConfiguration.class
+com\koala\utils\config\annotation\EnableJMSSender.class
+com\koala\utils\config\MessageSender.class
+com\koala\utils\config\MessageSenderRegistrar.class
+com\koala\utils\config\annotation\EnableDataSourceConfiguration.class
+com\koala\utils\config\JMSConfiguration.class
+com\koala\utils\config\BeansConfiguration.class
+com\koala\utils\config\CacheConfiguration.class
+com\koala\utils\config\MyBatisConfigurationSingle.class
+com\koala\utils\config\DataSourceConfiguration.class
+com\koala\utils\config\MapperScannerConfiguration.class
