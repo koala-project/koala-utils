@@ -62,13 +62,16 @@ public class CacheConfiguration implements EnvironmentAware {
 
         RedisTemplate redisTemplate = new RedisTemplate();
 
-        JedisConnectionFactory connectionFactory = new JedisConnectionFactory(redisSentinelConfiguration(propertyResolver.getProperty("cache.masterName"),
-                propertyResolver.getProperty("cache.host1"),
-                propertyResolver.getProperty("cache.host2"),
-                propertyResolver.getProperty("cache.host3")),jedisPoolConfig());
+        //集群用这个
+//        JedisConnectionFactory connectionFactory1 = new JedisConnectionFactory(redisSentinelConfiguration(propertyResolver.getProperty("cache.masterName"),
+//                propertyResolver.getProperty("cache.host")),jedisPoolConfig());
+        //单台用这个
+        JedisConnectionFactory connectionFactory = new JedisConnectionFactory(jedisPoolConfig());
+        connectionFactory.setHostName(propertyResolver.getProperty("cache.masterName"));
+        connectionFactory.setPort(Integer.valueOf(propertyResolver.getProperty("cache.port")));
 
         connectionFactory.afterPropertiesSet();
-
+        connectionFactory.setPassword(propertyResolver.getProperty("password"));
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES,true);
