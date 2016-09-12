@@ -1,6 +1,7 @@
 package com.koala.utils.config.annotation;
 
 import com.koala.utils.config.CacheConfiguration;
+import com.koala.utils.config.handler.RedisHandler;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;
@@ -13,7 +14,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({CacheConfiguration.class})
+@Import({CacheConfiguration.class, RedisHandler.class})
 public @interface EnableRedisConfiguration {
 
     String[] masterNames() default {"cache"};
