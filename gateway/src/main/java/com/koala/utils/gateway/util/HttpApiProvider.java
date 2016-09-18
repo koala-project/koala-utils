@@ -27,7 +27,7 @@ public class HttpApiProvider implements Opcodes {
         try {
             Class<?> clazz = method.proxyMethodInfo.getDeclaringClass();
             ApiParameterInfo[] parameterInfos = method.parameterInfos;
-            String className = "com/ulife/common/gateway/utils/autogen/ApiExecuter_" + name.replace('.', '_');
+            String className = "com/koala/utils/gateway/autogen/ApiExecuter_" + name.replace('.', '_');
             className = className.replace('$', '_');
             String classDesc = "L" + className + ";";
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
@@ -157,10 +157,10 @@ public class HttpApiProvider implements Opcodes {
                                 pmv.visitJumpInsn(IFNE, l2);
                             }
                             pmv.visitLabel(l1);
-                            pmv.visitTypeInsn(NEW, "com/ulife/common/gateway/utils/entity/ReturnCodeException");
+                            pmv.visitTypeInsn(NEW, "com/koala/utils/gateway/entity/ReturnCodeException");
                             pmv.visitInsn(DUP);
-                            pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/entity/ApiReturnCode", "PARAMETER_ERROR",
-                                    "Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;");
+                            pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/entity/ApiReturnCode", "PARAMETER_ERROR",
+                                    "Lcom/koala/utils/gateway/entity/AbstractReturnCode;");
                             pmv.visitTypeInsn(NEW, "java/lang/StringBuilder");
                             pmv.visitInsn(DUP);
                             pmv.loadConst("method=" + method.methodName + " parameter validation failed : " + parameterInfo.name + "=");
@@ -170,8 +170,8 @@ public class HttpApiProvider implements Opcodes {
                             pmv.visitInsn(AALOAD);
                             pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;");
                             pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;");
-                            pmv.visitMethodInsn(INVOKESPECIAL, "com/ulife/common/gateway/utils/entity/ReturnCodeException", "<init>",
-                                    "(Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;Ljava/lang/String;)V");
+                            pmv.visitMethodInsn(INVOKESPECIAL, "com/koala/utils/gateway/entity/ReturnCodeException", "<init>",
+                                    "(Lcom/koala/utils/gateway/entity/AbstractReturnCode;Ljava/lang/String;)V");
                             pmv.visitInsn(ATHROW);
                             pmv.visitLabel(l2);
                         }
@@ -274,10 +274,10 @@ public class HttpApiProvider implements Opcodes {
                             pmv.visitJumpInsn(GOTO, label_end);
                             pmv.visitLabel(l3);
                             pmv.setLocal("e");
-                            pmv.visitTypeInsn(NEW, "com/ulife/common/gateway/utils/entity/ReturnCodeException");
+                            pmv.visitTypeInsn(NEW, "com/koala/utils/gateway/entity/ReturnCodeException");
                             pmv.visitInsn(DUP);
-                            pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/entity/ApiReturnCode", "PARAMETER_ERROR",
-                                    "Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;");
+                            pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/entity/ApiReturnCode", "PARAMETER_ERROR",
+                                    "Lcom/koala/utils/gateway/entity/AbstractReturnCode;");
                             pmv.visitTypeInsn(NEW, "java/lang/StringBuilder");
                             pmv.visitInsn(DUP);
                             pmv.loadConst("method=" + method.methodName + " parameter validation failed : " + parameterInfo.name + "=");
@@ -288,8 +288,8 @@ public class HttpApiProvider implements Opcodes {
                             pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;");
                             pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;");
                             pmv.loadLocal("e");
-                            pmv.visitMethodInsn(INVOKESPECIAL, "com/ulife/common/gateway/utils/entity/ReturnCodeException", "<init>",
-                                    "(Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;Ljava/lang/String;Ljava/lang/Exception;)V");
+                            pmv.visitMethodInsn(INVOKESPECIAL, "com/koala/utils/gateway/entity/ReturnCodeException", "<init>",
+                                    "(Lcom/koala/utils/gateway/entity/AbstractReturnCode;Ljava/lang/String;Ljava/lang/Exception;)V");
                             pmv.visitInsn(ATHROW);
                             pmv.visitLabel(label_end);
                         }
@@ -310,47 +310,47 @@ public class HttpApiProvider implements Opcodes {
                 }
 
                 if (String.class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/StringResp", "convert",
-                            "(Ljava/lang/String;)Lcom/ulife/common/gateway/utils/responseEntity/StringResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/StringResp", "convert",
+                            "(Ljava/lang/String;)Lcom/koala/utils/gateway/responseEntity/StringResp;");
                 } else if (String[].class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/StringArrayResp", "convert",
-                            "([Ljava/lang/String;)Lcom/ulife/common/gateway/utils/responseEntity/StringArrayResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/StringArrayResp", "convert",
+                            "([Ljava/lang/String;)Lcom/koala/utils/gateway/responseEntity/StringArrayResp;");
                 } else if (boolean.class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/BoolResp", "convert", "(Z)Lcom/ulife/common/gateway/utils/responseEntity/BoolResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/BoolResp", "convert", "(Z)Lcom/koala/utils/gateway/responseEntity/BoolResp;");
                 } else if (boolean[].class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/BoolArrayResp", "convert",
-                            "([Z)Lcom/ulife/common/gateway/utils/responseEntity/BoolArrayResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/BoolArrayResp", "convert",
+                            "([Z)Lcom/koala/utils/gateway/responseEntity/BoolArrayResp;");
                 } else if (byte.class == method.returnType || short.class == method.returnType || char.class == method.returnType
                         || int.class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/NumberResp", "convert",
-                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/ulife/common/gateway/utils/responseEntity/NumberResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/NumberResp", "convert",
+                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/koala/utils/gateway/responseEntity/NumberResp;");
                 } else if (byte[].class == method.returnType || short[].class == method.returnType || char[].class == method.returnType
                         || int[].class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/NumberArrayResp", "convert",
-                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/ulife/common/gateway/utils/responseEntity/NumberArrayResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/NumberArrayResp", "convert",
+                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/koala/utils/gateway/responseEntity/NumberArrayResp;");
                 } else if (long.class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/LongResp", "convert", "(J)Lcom/ulife/common/gateway/utils/responseEntity/LongResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/LongResp", "convert", "(J)Lcom/koala/utils/gateway/responseEntity/LongResp;");
                 } else if (long[].class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/LongArrayResp", "convert",
-                            "([J)Lcom/ulife/common/gateway/utils/responseEntity/LongArrayResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/LongArrayResp", "convert",
+                            "([J)Lcom/koala/utils/gateway/responseEntity/LongArrayResp;");
                 } else if (double.class == method.returnType || float.class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/DoubleResp", "convert",
-                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/ulife/common/gateway/utils/responseEntity/DoubleResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/DoubleResp", "convert",
+                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/koala/utils/gateway/responseEntity/DoubleResp;");
                 } else if (double[].class == method.returnType || float[].class == method.returnType) {
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/DoubleArrayResp", "convert",
-                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/ulife/common/gateway/utils/responseEntity/DoubleArrayResp;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/DoubleArrayResp", "convert",
+                            "(" + Type.getDescriptor(method.returnType) + ")Lcom/koala/utils/gateway/responseEntity/DoubleArrayResp;");
                 } else if (Collection.class.isAssignableFrom(method.returnType)) {//support Collection
                     if (String.class == method.actuallyGenericReturnType) {
-                        pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/StringArrayResp", "convert",
-                                "(Ljava/util/Collection;)Lcom/ulife/common/gateway/utils/responseEntity/StringArrayResp;");
+                        pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/StringArrayResp", "convert",
+                                "(Ljava/util/Collection;)Lcom/koala/utils/gateway/responseEntity/StringArrayResp;");
                     } else {
-                        pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/ObjectArrayResp", "convert",
-                                "(Ljava/util/Collection;)Lcom/ulife/common/gateway/utils/responseEntity/ObjectArrayResp;");
+                        pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/ObjectArrayResp", "convert",
+                                "(Ljava/util/Collection;)Lcom/koala/utils/gateway/responseEntity/ObjectArrayResp;");
                     }
                 } else if (method.returnType.isArray()) {
                     //下面这句话已经support了object array，不过pojo未支持
-                    //                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/responseEntity/ObjectArrayResp", "convert",
-                    //                                        "([Ljava/lang/Object;)Lcom/ulife/common/gateway/utils/responseEntity/ObjectArrayResp;");
+                    //                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/responseEntity/ObjectArrayResp", "convert",
+                    //                                        "([Ljava/lang/Object;)Lcom/koala/utils/gateway/responseEntity/ObjectArrayResp;");
                     throw new RuntimeException(
                             String.format("unsupport return type,object array is not support now.type:%s,groupName:%s,methodName:%s",
                                     method.returnType, method.groupName, method.methodName));

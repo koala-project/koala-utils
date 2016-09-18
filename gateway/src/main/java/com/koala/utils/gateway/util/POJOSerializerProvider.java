@@ -43,7 +43,7 @@ public class POJOSerializerProvider implements Opcodes {
     private static <T> Serializer<T> build(Class<T> clazz) {
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         LinkedList<String> list = new LinkedList<String>();
-        String className = "com.ulife.common.gateway.utils.autogen.Serializer_" + clazz.getName().replace('.', '_');
+        String className = "com.koala.utils.gateway.utils.autogen.Serializer_" + clazz.getName().replace('.', '_');
         className = className.replace('$', '_');
         String c_name = className.replace('.', '/');
         String c_desc = "L" + c_name + ";";
@@ -64,7 +64,7 @@ public class POJOSerializerProvider implements Opcodes {
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
             MethodVisitor mv;
 
-            cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, c_name, "Ljava/lang/Object;Lcom/ulife/common/gateway/utils/define/Serializer<" + t_classDesc + ">;", "java/lang/Object",
+            cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, c_name, "Ljava/lang/Object;Lcom/koala/utils/gateway/define/Serializer<" + t_classDesc + ">;", "java/lang/Object",
                     new String[]{Serializer.class.getName().replace('.', '/')});
 
             if (clazz.getDeclaringClass() != null) {
@@ -147,7 +147,7 @@ public class POJOSerializerProvider implements Opcodes {
                     pmv.visitFieldInsn(GETSTATIC, c_name, "bs", "[[B");
                     pmv.loadConst(i);
                     pmv.visitLdcInsn(list.get(i));
-                    pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
+                    pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
                     pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "(Ljava/nio/charset/Charset;)[B");
                     pmv.visitInsn(AASTORE);
                 }
@@ -319,7 +319,7 @@ public class POJOSerializerProvider implements Opcodes {
                     } else {
                         pmv.visitMethodInsn(INVOKESTATIC, "java/lang/String", "valueOf", "(" + t_sig + ")Ljava/lang/String;");
                     }
-                    pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
+                    pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
                     pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "(Ljava/nio/charset/Charset;)[B");
                     pmv.visitMethodInsn(INVOKEVIRTUAL, "java/io/OutputStream", "write", "([B)V");
                     writeXmlEnd(cn, pmv, name.endsWith("List") ? name.substring(0, name.length() - 4) : "item", 2, map, list);
@@ -346,7 +346,7 @@ public class POJOSerializerProvider implements Opcodes {
                     } else {
                         pmv.visitMethodInsn(INVOKESTATIC, "java/lang/String", "valueOf", "(" + t_sig + ")Ljava/lang/String;");
                     }
-                    pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
+                    pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/define/ConstField", "UTF8", "Ljava/nio/charset/Charset;");
                     pmv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "(Ljava/nio/charset/Charset;)[B");
                     pmv.visitMethodInsn(INVOKEVIRTUAL, "java/io/OutputStream", "write", "([B)V");
                     writeXmlEnd(cn, pmv, name, 2, map, list);
@@ -377,7 +377,7 @@ public class POJOSerializerProvider implements Opcodes {
                     if (t.isEnum()) {
                         pmv.visitMethodInsn(INVOKEVIRTUAL, t.getName().replace('.', '/'), "name", "()Ljava/lang/String;");
                     }
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/util/POJOSerializerProvider", "writeXmlString",
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/util/POJOSerializerProvider", "writeXmlString",
                             "(Ljava/io/OutputStream;Ljava/lang/String;)V");
                     writeCDATAEnd(cn, pmv, name.endsWith("List") ? name.substring(0, name.length() - 4) : "item", 2, map, list);
                     pmv.visitJumpInsn(GOTO, label_loop);
@@ -407,7 +407,7 @@ public class POJOSerializerProvider implements Opcodes {
                     if (t.isEnum()) {
                         pmv.visitMethodInsn(INVOKEVIRTUAL, t.getName().replace('.', '/'), "name", "()Ljava/lang/String;");
                     }
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/util/POJOSerializerProvider", "writeXmlString",
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/util/POJOSerializerProvider", "writeXmlString",
                             "(Ljava/io/OutputStream;Ljava/lang/String;)V");
                     writeCDATAEnd(cn, pmv, name, 2, map, list);
                     pmv.visitLabel(label_null);
@@ -423,8 +423,8 @@ public class POJOSerializerProvider implements Opcodes {
                     pmv.declareLocal("serializer", Serializer.class);
                     //TODO 如果要支持泛型的动态序列化，这部分逻辑需要重构
                     pmv.visitLdcInsn(Type.getType(t));
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/util/POJOSerializerProvider", "getSerializer",
-                            "(Ljava/lang/Class;)Lcom/ulife/common/gateway/utils/define/Serializer;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/util/POJOSerializerProvider", "getSerializer",
+                            "(Ljava/lang/Class;)Lcom/koala/utils/gateway/define/Serializer;");
                     pmv.setLocal("serializer");
                     pmv.loadArg(1); // load instance
                     pmv.visitFieldInsn(GETFIELD, t_className, name, Type.getDescriptor(fd.getType()));//attention:t是actually generic types
@@ -443,7 +443,7 @@ public class POJOSerializerProvider implements Opcodes {
                     pmv.visitMethodInsn(INVOKEINTERFACE, "java/util/Iterator", "next", "()Ljava/lang/Object;");
                     pmv.loadArg(2); // load out
                     pmv.loadConst(0);
-                    pmv.visitMethodInsn(INVOKEINTERFACE, "com/ulife/common/gateway/utils/define/Serializer", "toXml", "(Ljava/lang/Object;Ljava/io/OutputStream;Z)V");
+                    pmv.visitMethodInsn(INVOKEINTERFACE, "com/koala/utils/gateway/define/Serializer", "toXml", "(Ljava/lang/Object;Ljava/io/OutputStream;Z)V");
                     writeXmlEnd(cn, pmv, name.endsWith("List") ? name.substring(0, name.length() - 4) : "item", 2, map, list);
                     pmv.visitJumpInsn(GOTO, label_loop);
                     pmv.visitLabel(label_finish);
@@ -471,12 +471,12 @@ public class POJOSerializerProvider implements Opcodes {
                     //                    } else {
                     pmv.visitLdcInsn(Type.getType(t));
                     //                    }
-                    pmv.visitMethodInsn(INVOKESTATIC, "com/ulife/common/gateway/utils/util/POJOSerializerProvider", "getSerializer",
-                            "(Ljava/lang/Class;)Lcom/ulife/common/gateway/utils/define/Serializer;");
+                    pmv.visitMethodInsn(INVOKESTATIC, "com/koala/utils/gateway/util/POJOSerializerProvider", "getSerializer",
+                            "(Ljava/lang/Class;)Lcom/koala/utils/gateway/define/Serializer;");
                     pmv.loadLocal("obj");
                     pmv.loadArg(2);
                     pmv.loadConst(0);
-                    pmv.visitMethodInsn(INVOKEINTERFACE, "com/ulife/common/gateway/utils/define/Serializer", "toXml", "(Ljava/lang/Object;Ljava/io/OutputStream;Z)V");
+                    pmv.visitMethodInsn(INVOKEINTERFACE, "com/koala/utils/gateway/define/Serializer", "toXml", "(Ljava/lang/Object;Ljava/io/OutputStream;Z)V");
                     writeXmlEnd(cn, pmv, name, 2, map, list);
                     pmv.visitLabel(label_null);
                     pmv.deleteLocal("obj");
@@ -493,12 +493,12 @@ public class POJOSerializerProvider implements Opcodes {
         pmv.visitLabel(l2);
         pmv.declareLocal("e", Exception.class);
         pmv.setLocal("e");
-        pmv.visitTypeInsn(NEW, "com/ulife/common/gateway/utils/entity/ReturnCodeException");
+        pmv.visitTypeInsn(NEW, "com/koala/utils/gateway/entity/ReturnCodeException");
         pmv.visitInsn(DUP);
-        pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/entity/ApiReturnCode", "UNKNOWN_ERROR", "Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;");
+        pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/entity/ApiReturnCode", "UNKNOWN_ERROR", "Lcom/koala/utils/gateway/entity/AbstractReturnCode;");
         pmv.loadLocal("e");
-        pmv.visitMethodInsn(INVOKESPECIAL, "com/ulife/common/gateway/utils/entity/ReturnCodeException", "<init>",
-                "(Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;Ljava/lang/Exception;)V");
+        pmv.visitMethodInsn(INVOKESPECIAL, "com/koala/utils/gateway/entity/ReturnCodeException", "<init>",
+                "(Lcom/koala/utils/gateway/entity/AbstractReturnCode;Ljava/lang/Exception;)V");
         pmv.visitInsn(ATHROW);
         pmv.visitLabel(label_end);
         pmv.visitInsn(RETURN);
@@ -515,7 +515,7 @@ public class POJOSerializerProvider implements Opcodes {
         pmv.visitLabel(l0);
         pmv.loadArg(2);
         pmv.loadArg(1);
-        pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/define/Serializer$ApiSerializerFeature", "SERIALIZER_FEATURES", "[Lcom/alibaba/fastjson/serializer/SerializerFeature;");
+        pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/define/Serializer$ApiSerializerFeature", "SERIALIZER_FEATURES", "[Lcom/alibaba/fastjson/serializer/SerializerFeature;");
         pmv.visitMethodInsn(INVOKESTATIC, "com/alibaba/fastjson/JSON", "toJSONBytes",
                 "(Ljava/lang/Object;[Lcom/alibaba/fastjson/serializer/SerializerFeature;)[B");
         pmv.visitMethodInsn(INVOKEVIRTUAL, "java/io/OutputStream", "write", "([B)V");
@@ -525,12 +525,12 @@ public class POJOSerializerProvider implements Opcodes {
         pmv.visitLabel(l2);
         pmv.declareLocal("e", Exception.class);
         pmv.setLocal("e");
-        pmv.visitTypeInsn(NEW, "com/ulife/common/gateway/utils/entity/ReturnCodeException");
+        pmv.visitTypeInsn(NEW, "com/koala/utils/gateway/entity/ReturnCodeException");
         pmv.visitInsn(DUP);
-        pmv.visitFieldInsn(GETSTATIC, "com/ulife/common/gateway/utils/entity/ApiReturnCode", "UNKNOWN_ERROR", "Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;");
+        pmv.visitFieldInsn(GETSTATIC, "com/koala/utils/gateway/entity/ApiReturnCode", "UNKNOWN_ERROR", "Lcom/koala/utils/gateway/entity/AbstractReturnCode;");
         pmv.loadLocal("e");
-        pmv.visitMethodInsn(INVOKESPECIAL, "com/ulife/common/gateway/utils/entity/ReturnCodeException", "<init>",
-                "(Lcom/ulife/common/gateway/utils/entity/AbstractReturnCode;Ljava/lang/Exception;)V");
+        pmv.visitMethodInsn(INVOKESPECIAL, "com/koala/utils/gateway/entity/ReturnCodeException", "<init>",
+                "(Lcom/koala/utils/gateway/entity/AbstractReturnCode;Ljava/lang/Exception;)V");
         pmv.visitInsn(ATHROW);
         pmv.visitLabel(label_end);
         pmv.visitInsn(RETURN);

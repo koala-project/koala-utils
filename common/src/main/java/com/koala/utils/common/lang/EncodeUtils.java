@@ -121,50 +121,6 @@ public class EncodeUtils {
     }
 
     /**
-     * Html 转码.
-     * 
-     * @param html
-     *            String
-     * @return String
-     */
-    public static String htmlEscape(String html) {
-        return StringUtils.escapeHtml(html);
-    }
-
-    /**
-     * Html 解码.
-     * 
-     * @param htmlEscaped
-     *            String
-     * @return String
-     */
-    public static String htmlUnescape(String htmlEscaped) {
-        return StringUtils.unescapeHtml(htmlEscaped);
-    }
-
-    /**
-     * Xml 转码.
-     * 
-     * @param xml
-     *            String
-     * @return String
-     */
-    public static String xmlEscape(String xml) {
-        return StringUtils.escapeXml(xml);
-    }
-
-    /**
-     * Xml 解码.
-     * 
-     * @param xmlEscaped
-     *            String
-     * @return String
-     */
-    public static String xmlUnescape(String xmlEscaped) {
-        return StringUtils.unescapeXml(xmlEscaped);
-    }
-
-    /**
      * 对应js的escape.
      * 
      * @param src

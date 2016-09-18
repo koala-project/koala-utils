@@ -25,10 +25,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * 目前使用HashMap作为存储容器是因为当前的ApiManager在应用启动时进行静态初始化，能保证线程 安全的进行数据插入操作。在这之后都是对HashMap的多线程只读访问。
  */
 public final class ApiManager {
-    private static final Logger logger                     = LoggerFactory.getLogger(ApiManager.class);
-    private Map<String, HttpApiExecuter> nameToApi                 = new ConcurrentHashMap<String, HttpApiExecuter>();
-    private Map<String, ApiMethodInfo> apiInfos                  = new ConcurrentHashMap<String, ApiMethodInfo>();
-    private static final String UNDER_SCORE               = "_";
+    private static final Logger logger = LoggerFactory.getLogger(ApiManager.class);
+    private Map<String, HttpApiExecuter> nameToApi = new ConcurrentHashMap<String, HttpApiExecuter>();
+    private Map<String, ApiMethodInfo> apiInfos = new ConcurrentHashMap<String, ApiMethodInfo>();
+    private static final String UNDER_SCORE = "_";
     private static final String DUBBO_INSTANCE_PKG_NAME = "com.alibaba.dubbo.common.bytecode";
 
     public ApiManager() {

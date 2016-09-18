@@ -27,13 +27,13 @@ public class CommonConfig {
             if (prop == null) {
                 throw new RuntimeException("common config init failed.");
             } else {
-                instance.setAccessFileLoggerName(prop.getProperty("com.ulife.portal.gateway.accessLoggerName", "com.ulife.portal.gateway.api.access"));
+                instance.setAccessFileLoggerName(prop.getProperty("com.ulife.portal.gateway.accessLoggerName", "com.koala.portal.gateway.api.access"));
                 instance.setAutogenPath(prop.getProperty("com.ulife.portal.gateway.autogenPath", "/tmp/autogen"));
                 instance.setCacheVersion(prop.getProperty("com.ulife.portal.gateway.cacheVersion", "v1"));
                 instance.setCacheType(prop.getProperty("com.ulife.portal.gateway.cacheType", "memcache"));
                 instance.setUseHttpGzip(Boolean.valueOf(prop.getProperty("com.ulife.portal.gateway.useHttpGzip", "false")));
                 instance.setApigwVersion(prop.getProperty("com.ulife.portal.gateway.apigwVersion", "develop"));
-                instance.setApiInfoXslSite(prop.getProperty("com.ulife.portal.gateway.apiInfoXslSite"));
+                instance.setApiInfoXslSite(prop.getProperty("com.koala.portal.gateway.apiInfoXslSite"));
                 instance.setOriginWhiteList(prop.getProperty("com.ulife.portal.gateway.originWhiteList"));
                 instance.setTimeout(Integer.parseInt(prop.getProperty("dubbo.timeout")));
             }
