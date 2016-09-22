@@ -34,7 +34,7 @@ public class CommonConfig {
                 instance.setUseHttpGzip(Boolean.valueOf(prop.getProperty("com.ulife.portal.gateway.useHttpGzip", "false")));
                 instance.setApigwVersion(prop.getProperty("com.ulife.portal.gateway.apigwVersion", "develop"));
                 instance.setApiInfoXslSite(prop.getProperty("com.koala.portal.gateway.apiInfoXslSite"));
-                instance.setOriginWhiteList(prop.getProperty("com.ulife.portal.gateway.originWhiteList"));
+                instance.setOriginWhiteList(prop.getProperty("com.koala.portal.gateway.originWhiteList"));
                 instance.setTimeout(Integer.parseInt(prop.getProperty("dubbo.timeout")));
             }
             instance.accessLogger = AccessLogger.getInstance();
