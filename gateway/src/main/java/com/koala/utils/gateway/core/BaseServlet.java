@@ -91,7 +91,7 @@ public abstract class BaseServlet extends HttpServlet {
         //解决H5跨域问题
         {
             String origin = request.getHeader("Origin");
-            if (origin != null && CommonConfig.getInstance().getOriginWhiteList().containsKey(origin)) {
+            if (origin != null /*&& CommonConfig.getInstance().getOriginWhiteList().containsKey(origin)*/) {
                 response.setHeader(HEADER_ORGIN, origin);
                 response.addHeader(HEADER_METHOD, HEADER_METHOD_VALUE);
                 response.setHeader(HEADER_CREDENTIALS, HEADER_CREDENTIALS_VALUE);
