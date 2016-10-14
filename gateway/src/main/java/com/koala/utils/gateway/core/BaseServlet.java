@@ -91,6 +91,7 @@ public abstract class BaseServlet extends HttpServlet {
         //解决H5跨域问题
         {
             String origin = request.getHeader("Origin");
+            //TODO 暂时去除白名单功能
             if (origin != null /*&& CommonConfig.getInstance().getOriginWhiteList().containsKey(origin)*/) {
                 response.setHeader(HEADER_ORGIN, origin);
                 response.addHeader(HEADER_METHOD, HEADER_METHOD_VALUE);
@@ -160,7 +161,7 @@ public abstract class BaseServlet extends HttpServlet {
             if (context.host != null && map.containsKey(context.host)) {
                 idfa_cookie.setDomain(map.get(context.host));
             }
-            idfa_cookie.setDomain(".ucaiyuan.com");
+            idfa_cookie.setDomain(".koala.com");
             response.addCookie(idfa_cookie);
         }
     }
@@ -181,8 +182,7 @@ public abstract class BaseServlet extends HttpServlet {
             setResponseHeader(request, response, apiContext);
             parseResult = parseMethodInfo(apiContext, request);
             // 验证token是否过期, 只对安全级别为 UserLogin 的访问进行此种检查
-            if (parseResult == ApiReturnCode.SUCCESS && apiContext.caller != null && SecurityType.UserLogin
-                    .check(apiContext.requiredSecurity)) {
+            if (parseResult == ApiReturnCode.SUCCESS && apiContext.caller != null && SecurityType.UserLogin.check(apiContext.requiredSecurity)) {
                 if (apiContext.caller.expire < current) {
                     parseResult = ApiReturnCode.TOKEN_EXPIRE;
                     apiContext.clearUserTokenFlag = true;
@@ -347,8 +347,7 @@ public abstract class BaseServlet extends HttpServlet {
                 context.cid = REQ_TAG + context.startTime;
             }
             context.host = request.getHeader("host");
-            context.cid = SERVER_ADDRESS + CommonConfig.getInstance().getServerAddress() + SPLIT + THREADID + Thread.currentThread().getId() + SPLIT
-                    + context.cid;
+            context.cid = SERVER_ADDRESS + CommonConfig.getInstance().getServerAddress() + SPLIT + THREADID + Thread.currentThread().getId() + SPLIT + context.cid;
             context.versionCode = request.getParameter(CommonParameter.versionCode);
             context.deviceIdStr = request.getParameter(CommonParameter.deviceId);
             context.deviceToken = request.getParameter(CommonParameter.deviceToken);
@@ -501,6 +500,7 @@ public abstract class BaseServlet extends HttpServlet {
 
     /**
      * 确定返回值的序列化类型
+     * 默认返回JSON格式
      */
     private void parseFormatType(ApiContext context, HttpServletRequest request) {
         String format = request.getParameter(CommonParameter.format);
@@ -529,10 +529,8 @@ public abstract class BaseServlet extends HttpServlet {
                 context.caller = parseCallerInfo(context,context.token);
             }
             // 查看是否可以根据dtk确认设备身份
-            if (context.caller == null) {
-                if (context.deviceToken != null) {
-                    context.caller = parseCallerInfo(context, context.deviceToken);
-                }
+            if (context.caller == null && context.deviceToken != null) {
+                context.caller = parseCallerInfo(context, context.deviceToken);
             }
         } catch (Exception e) {
             logger.error(SERVLET_MARKER, "parse token failed.", e);

@@ -27,12 +27,12 @@ public class CommonConfig {
             if (prop == null) {
                 throw new RuntimeException("common config init failed.");
             } else {
-                instance.setAccessFileLoggerName(prop.getProperty("com.ulife.portal.gateway.accessLoggerName", "com.koala.portal.gateway.api.access"));
-                instance.setAutogenPath(prop.getProperty("com.ulife.portal.gateway.autogenPath", "/tmp/autogen"));
-                instance.setCacheVersion(prop.getProperty("com.ulife.portal.gateway.cacheVersion", "v1"));
-                instance.setCacheType(prop.getProperty("com.ulife.portal.gateway.cacheType", "memcache"));
-                instance.setUseHttpGzip(Boolean.valueOf(prop.getProperty("com.ulife.portal.gateway.useHttpGzip", "false")));
-                instance.setApigwVersion(prop.getProperty("com.ulife.portal.gateway.apigwVersion", "develop"));
+                instance.setAccessFileLoggerName(prop.getProperty("com.koala.portal.gateway.accessLoggerName", "com.koala.portal.gateway.api.access"));
+                instance.setAutogenPath(prop.getProperty("com.koala.portal.gateway.autogenPath", "/tmp/autogen"));
+                instance.setCacheVersion(prop.getProperty("com.koala.portal.gateway.cacheVersion", "v1"));
+                instance.setCacheType(prop.getProperty("com.koala.portal.gateway.cacheType", "memcache"));
+                instance.setUseHttpGzip(Boolean.valueOf(prop.getProperty("com.koala.portal.gateway.useHttpGzip", "false")));
+                instance.setApigwVersion(prop.getProperty("com.koala.portal.gateway.apigwVersion", "develop"));
                 instance.setApiInfoXslSite(prop.getProperty("com.koala.portal.gateway.apiInfoXslSite"));
                 instance.setOriginWhiteList(prop.getProperty("com.koala.portal.gateway.originWhiteList"));
                 instance.setTimeout(Integer.parseInt(prop.getProperty("dubbo.timeout")));
@@ -64,7 +64,7 @@ public class CommonConfig {
 
     private void setAccessFileLoggerName(String accessFileLoggerName) {
         this.accessFileLoggerName = accessFileLoggerName;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.accessLoggerName:{}", this.accessFileLoggerName);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.accessLoggerName:{}", this.accessFileLoggerName);
     }
 
     private Logger accessFileLogger = null;
@@ -90,7 +90,7 @@ public class CommonConfig {
 
     private void setAutogenPath(String autogenPath) {
         this.autogenPath = autogenPath;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.autogenPath:{}", this.autogenPath);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.autogenPath:{}", this.autogenPath);
     }
 
     public String getAutogenPath() {
@@ -101,7 +101,7 @@ public class CommonConfig {
 
     private void setCacheVersion(String cacheVersion) {
         this.cacheVersion = cacheVersion;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.cacheVersion:{}", this.cacheVersion);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.cacheVersion:{}", this.cacheVersion);
     }
 
     public String getCacheVersion() {
@@ -112,7 +112,7 @@ public class CommonConfig {
 
     private void setCacheType(String cacheType) {
         this.cacheType = cacheType;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.cacheType:{}", this.cacheType);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.cacheType:{}", this.cacheType);
     }
 
     public String getCacheType() {
@@ -123,7 +123,7 @@ public class CommonConfig {
 
     private void setUseHttpGzip(boolean useHttpGzip) {
         this.useHttpGzip = useHttpGzip;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.useHttpGzip:{}", this.useHttpGzip);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.useHttpGzip:{}", this.useHttpGzip);
     }
 
     public boolean getUseHttpGzip() {
@@ -146,7 +146,7 @@ public class CommonConfig {
 
     private void setApigwVersion(String apigwVersion) {
         this.apigwVersion = apigwVersion;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.apigwVersion:{}", this.apigwVersion);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.apigwVersion:{}", this.apigwVersion);
     }
 
     public String getApigwVersion() {
@@ -160,7 +160,7 @@ public class CommonConfig {
 
     private void setApiInfoXslSite(String apiInfoXslSite) {
         this.apiInfoXslSite = apiInfoXslSite;
-        logger.info("[CommonConfig.init]com.ulife.portal.gateway.apiInfoXslSite:{}", this.apiInfoXslSite);
+        logger.info("[CommonConfig.init]com.koala.portal.gateway.apiInfoXslSite:{}", this.apiInfoXslSite);
     }
 
     public String getApiInfoXslSite() {
